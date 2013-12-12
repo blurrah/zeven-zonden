@@ -10,6 +10,7 @@ De applicatie maakt gebruik van Backbone, Underscore, jQuery en Phonegap
 * Boris Besemer
 * Jasper Berghoef
 * Lucas Berghoef
+* Lars Groenewald
 * Inge Kamps
 * Mitchell Slager
 
