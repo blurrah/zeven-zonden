@@ -19,26 +19,14 @@
     <header>
         <h1>- 7 -</h1>
         <nav>
-            <a onclick="window.history.back();" id="backLink">&nbsp;</a>
+            <a href="#" id="backLink">&nbsp;</a>
             <a onclick="alert('Nu zou een menu moeten openen.');" id="menuLink">&nbsp;</a>
         </nav>
     </header>
   
     <div id="content"></div>
     
-    <!-- JavaScript files -->
-    <script src="js/lib/jquery.min.js"></script>
-    <script src="js/lib/fastclick.js"></script>
-    <script src="js/lib/underscore-min.js"></script>
-    <script src="js/lib/backbone-min.js"></script>
-    <script src="js/lib/backbone.localStorage-min.js"></script>
-    <script src="js/app.js"></script>
-    <script>
-        $(document).ready(function() {
-			$(function() {
-				FastClick.attach(document.body);
-			});
-		});
-    </script>
+    <!-- Dit is het enige wat nog geladen moet worden. -->
+    <script src="js/lib/require.js" data-main="js/app.js"></script>
   </body>
 </html>

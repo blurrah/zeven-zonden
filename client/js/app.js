@@ -1,9 +1,58 @@
 // Backbone backend voor Mobile Interaction applicatie
 
+/* Todo list
+- Overige pagina's toevoegen
+- Data van gebruiker opslaan in localStorage
+- Views, Controllers, Models gaan scheiden van hoofd JS bestand
+- Grunt installeren (task runner om alles te compressen en shit)
+
+*/
+
+// Use strict betekent strict-modus. De browser blokkeert onveilige handelingen en bad practices, mooi om kritisch te blijven.
 "use strict";
 
-// Op dit moment voor het debuggen maken we gebruik van een jquery load dinges
+/*
+Tijd om RequireJS te gebruiken.
+Alle JS bestanden worden dan binnengehaald door RequireJS en kunnen we alle views, controllers, models
+in andere bestanden stoppen en worden deze alleen opgeroept op het moment dat ze nodig zijn! :)
+
+*/
+require.config({
+    baseUrl: "js/",
+    paths: {
+        jquery: 'lib/jquery.min',
+        underscore: 'lib/underscore-min',
+        backbone: 'lib/backbone-min',
+        'backbone.localStorage': 'lib/backbone.localStorage-min',
+        fastclick: 'lib/fastclick'
+    },
+    /* Backbone en Underscore bieden geen support voor RequireJS out of the box
+    Dus ik geef via een "shim" aan welke object backbone op moet reageren
+    */
+    shim: {
+        // Underscore draait los van alles dus geen dependencies
+        underscore: {
+            exports: "_"
+        },
+        // Bijvoorbeeld backbone is afhankelijk van _ en $ en reageert op Backbone
+        backbone: {
+            deps: ['underscore', 'jquery'],
+            exports: 'Backbone'
+        },
+        // bb.localstorage maakt gebruik van Backbone als dep, dus ook meteen js en _. Reageert ook op Backbone.
+        'backbone.localStorage': {
+            deps: ['backbone'],
+            exports: 'Backbone'
+        }
+    }
+});
+
+// Require starten, hier geef ik aan welk object de library moet aanspreken ($ = jquery)
+define(['jquery', 'underscore', 'backbone', 'fastclick'], function($, _, Backbone, FastClick) {
     
+
+
+
     /* Dit gebruiken we als objecten om backbone te extenden
     View: directory.views.NAAMVANVIEW
     Model: directory.models.NAAMVANMODEL
@@ -62,20 +111,6 @@
        }
     });
     
-    // De header
-    directory.views.header = Backbone.View.extend({
-        initialize: function() {
-            _.bindAll(this, 'render');
-            
-            this.template = _.template(directory.utils.templateLoader.get('header'));
-            
-        },
-        
-        render: function() {
-            var self = this;
-            $(this.el).html(this.template);
-        }
-    });
 
     // Algemene view van de pagina
     directory.views.list = Backbone.View.extend({
@@ -129,9 +164,16 @@
             // De geschiedenis van de pagina's om bij te houden of je naar voren of achter moet sliden
             this.pageHistory = [];
             
+            
             this.startPage = new directory.views.list();
             //this.startPage.render();
             $(this.startPage.el).attr('id', 'startPage');
+            
+            $('header').on('click', '#backLink', function(event){
+                window.history.back();
+                return false;
+            });
+            
             
         },
         
@@ -173,6 +215,7 @@
             }
             
             $('.stage-right, .stage-left').not('#startPage').remove();
+            console.log("Hai?");
             
             if (page === this.startPage) {
                 // Altijd terugsliden als je naar de startpagina gaat
@@ -206,8 +249,12 @@
         }
     });
     
-    directory.utils.templateLoader.load(['start-page', 'locatie-page', 'reis-page'],
+    directory.utils.templateLoader.load(['start-page', 'locatie-page', 'reis-page', 'header'],
         function() {
             directory.app = new directory.Router();
             Backbone.history.start();
     });
+    
+    FastClick.attach(document.body);
+    
+});

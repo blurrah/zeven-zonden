@@ -15,6 +15,7 @@ body {
 	height: 100%; width: 100%;
 	margin: 0px; padding: 0px;
 	background-color: #e1ded9;
+	overflow-x: hidden;
 }
 
 /* TEXT
@@ -163,8 +164,8 @@ header {
     header h1 {
         display: block;
         margin: 0px; padding: 0px;
-        font-family: 'Athelas Bold Italic';
-        font-size: 30px; font-weight: bold; font-style: italic;
+        font-family: 'Athelas Bold';
+        font-size: 30px; font-weight: bold;
         color: #e1ded9; text-align: center; line-height: 35px;
     }
 
@@ -193,8 +194,25 @@ nav {
 
 section {
     display: block; box-sizing: border-box;
-    padding: 44px 0px 44px 0px;
+    padding: 44px 0px 0px 0px;
 }
+
+    section #pageTitle {
+        display: block;
+        width: 100%; height: 78px;
+    }
+    
+        section #pageTitle h2 {
+            font-family: 'Athelas'; font-size: 13px; font-weight: 400;
+            color: #696865; text-align: center;
+            margin: 0px; padding: 12px 0px 2px 0px;
+        }
+        
+        section #pageTitle h1 {
+            font-family: 'Athelas Italic'; font-size: 32px; font-weight: 400;
+            color: #292a2c; text-align: center;
+            margin: 0px; padding: 2px 0px 12px 0px;
+        }
 
 /* ARTICLE
 ================================================== */
@@ -204,9 +222,15 @@ article {
     padding: 0px 15px;
 }
 
+    article .zonde-icon {
+        display: block;
+        padding: 20px 20px 10px 20px;
+        margin: 0px auto;
+    }
+
     div#buttonContainer {
         display: block; position: relative;
-        width: 100%;
+        width: 100%; height: auto;
         top: 25px;
         text-align: center;
     }
@@ -225,6 +249,11 @@ article {
     background-color: #58575a;
 }
 
+    #photoContainer img {
+        display: block;
+        margin: 0px auto;
+    }
+
 /*===[ Article buttons ]===*/
 
 .illustratedButton {
@@ -233,23 +262,18 @@ article {
     background-color: #c6c4c1;
     padding: 14px 18px 20px; margin: 0px 9px;
     border-radius: 5px 5px 0px 0px;
-    background-size: 68px 68px; background-repeat: no-repeat; background-position: center;
 }
-
-    #compassButton { background-image: url(../img/compass-icon.svg); }
-    #arrowButton { background-image: url(../img/arrow-icon.svg); }
-    #directionButton { background-image: url(../img/direction-icon.svg); }
 
     .buttonTitle {
         display: block; position: relative;
-        top: 88px;
+        top: 16px;
         width: 104px;
         background-color: #db2845;
         padding: 15px 0px; margin-left: -18px;
         border-radius: 0px 0px 5px 5px;
-        font-family: 'Athelas Bold Italic';
-        color: #e1ded9; text-align: center;
-        font-size: 13px; font-weight: bold; font-style: italic;
+        font-family: 'Athelas Bold';
+        color: #e1ded9; text-align: center; letter-spacing: -1px;
+        font-size: 13px; font-weight: bold; font-style: normal;
     }
 
 /* FOOTER
