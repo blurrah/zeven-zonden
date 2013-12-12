@@ -204,18 +204,24 @@ article {
     padding: 0px 15px;
 }
 
-    article#buttonContainer {
+    div#buttonContainer {
         display: block; position: relative;
         width: 100%;
         top: 25px;
         text-align: center;
     }
 
-/*===[ Video container ]===*/
+/*===[ Media container ]===*/
 
 #videoContainer {
     display: block;
     height: 320px; width: 100%;
+    background-color: #58575a;
+}
+
+#photoContainer {
+    display: block;
+    height: 182px; width: 100%;
     background-color: #58575a;
 }
 
@@ -232,6 +238,7 @@ article {
 
     #compassButton { background-image: url(../img/compass-icon.svg); }
     #arrowButton { background-image: url(../img/arrow-icon.svg); }
+    #directionButton { background-image: url(../img/direction-icon.svg); }
 
     .buttonTitle {
         display: block; position: relative;
@@ -240,8 +247,9 @@ article {
         background-color: #db2845;
         padding: 15px 0px; margin-left: -18px;
         border-radius: 0px 0px 5px 5px;
+        font-family: 'Athelas Bold Italic';
         color: #e1ded9; text-align: center;
-        font-size: 15px; font-weight: bold; font-style: italic;
+        font-size: 13px; font-weight: bold; font-style: italic;
     }
 
 /* FOOTER
