@@ -3,7 +3,7 @@
 
 * {
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
-	-webkit-overflow-scrolling: touch;
+	/* -webkit-overflow-scrolling: touch; */
 	-webkit-font-smoothing: antialiased;
 }
 
@@ -15,7 +15,6 @@ body {
 	height: 100%; width: 100%;
 	margin: 0px; padding: 0px;
 	background-color: #e1ded9;
-	overflow-x: hidden;
 }
 
 /* TEXT
@@ -27,6 +26,14 @@ body {
     font-family: 'Athelas';
     src: url('fonts/athelas-regular.woff') format('woff'),
          url('fonts/athelas-regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Athelas Italic';
+    src: url('fonts/athelas-italic.woff') format('woff'),
+         url('fonts/athelas-italic.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -48,16 +55,32 @@ body {
 }
 
 @font-face {
-    font-family: 'Athelas Italic';
-    src: url('fonts/athelas-italic.woff') format('woff'),
-         url('fonts/athelas-italic.ttf') format('truetype');
+    font-family: 'ProximaNova';
+    src: url('fonts/proximanova-regular.woff') format('woff'),
+         url('fonts/proximanova-regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ProximaNova SemiBold';
+    src: url('fonts/proximanova-semibold.woff') format('woff'),
+         url('fonts/proximanova-semibold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ProximaNova Bold';
+    src: url('fonts/proximanova-bold.woff') format('woff'),
+         url('fonts/proximanova-bold.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
 * {
-   font-family: 'Athelas';
-   font-size: 15px;
+   font-family: 'ProximaNova';
+   font-size: 16px;
 }
 
 /*===[ Headers ]===*/
@@ -93,12 +116,13 @@ h1, h2, h3, h4, h5, h6 {
 /*===[ Paragraphs ]===*/
 
 p {
-    
+    font-family: 'ProximaNova';
 }
 
 /*===[ Hyperlinks ]===*/
 
 a {
+    font-family: 'ProximaNova';
 	text-decoration: none;
 }
 
@@ -135,6 +159,13 @@ img {
 
 /*===[ Other ]===*/
 
+#content {
+    position: absolute;
+    width: 100%; height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
 .page {
     position: absolute;
     width: 100%; height: 100%;
@@ -156,6 +187,7 @@ img {
 
 header {
     display: block; position: fixed;
+    padding: 20px 0px 0px 0px;
     left: 0px; top: 0px; z-index: 100;
     height: 44px; width: 100%;
     background-color: #db2845;
@@ -164,16 +196,22 @@ header {
     header h1 {
         display: block;
         margin: 0px; padding: 0px;
-        font-family: 'Athelas Bold';
-        font-size: 30px; font-weight: bold;
+        font-size: 30px; font-weight: 400;
         color: #e1ded9; text-align: center; line-height: 35px;
+        letter-spacing: -2px;
     }
+    
+        header h1 small {
+             font-size: 20px; font-weight: 400; font-style: italic;
+             line-height: 35px;
+        }
 
 /* NAV
 ================================================== */
 
 nav {
     display: block; position: fixed;
+    padding: 20px 0px 0px 0px;
     left: 0px; top: 0px; z-index: 101;
     height: 44px; width: 100%;
 }
@@ -183,18 +221,72 @@ nav {
         width: 48px; height: 24px;
         margin: 5px; padding: 5px;
         cursor: pointer;
-        background-color: rgba(255,255,255,0.2);
+        opacity: 0.8;
     }
 
-        nav a#backLink { float: left; }
-        nav a#menuLink { float: right; }
+        nav a#menuLink {
+            float: right;
+            background-image: url('../img/home-icon.png'), url('../img/down-icon.png');
+            background-repeat: no-repeat, no-repeat;
+            background-size: 24px 22px, 7px 5px;
+            background-position: right center, left center;
+            background-position-x: 80%, 30%;
+        }
+        
+        nav a#backLink {
+            float: left;
+            background-image: url('../img/back-icon.png');
+            background-repeat: no-repeat;
+            background-size: 20px 20px;
+            background-position: center center;
+            background-position-x: 10%;
+        }
+        
+    ul#popupMenu {
+        display: block; position: fixed;
+        width: 100%; height: auto;
+        margin: 0px; padding: 0px; z-index: 50;
+        top: -68px; left: 0px; /* Reguliere positie: 64px */
+        background-color: #292a2c;
+        
+        -webkit-transition: top .250s ease-out; /* Safari */
+        transition: top .250s ease-out;
+    }
+    
+        ul#popupMenu li {
+            display: block; box-sizing: border-box;
+            width: 100%; height: 44px;
+            margin: 0px; padding: 0px;
+            list-style: none; list-style-position: inside;
+            font-size: 18px; font-weight: bold;
+            color: #e1ded9; text-align: center; line-height: 44px;
+            border-bottom: 1px solid #58575a;
+        }
+        
+        ul#popupMenu li:last-child { border-bottom: none; }
+        
+    li#homeButton {
+        background-image: url('../img/home-icon.png');
+        background-repeat: no-repeat;
+        background-size: 24px 22px;
+        background-position: left center;
+        background-position-x: 15px;
+    }
+    
+    li#badgeButton {
+        
+    }
+    
+    li#aboutButton {
+        
+    }
 
 /* SECTION
 ================================================== */
 
 section {
     display: block; box-sizing: border-box;
-    padding: 44px 0px 0px 0px;
+    padding: 64px 0px 0px 0px;
 }
 
     section #pageTitle {
@@ -203,7 +295,7 @@ section {
     }
     
         section #pageTitle h2 {
-            font-family: 'Athelas'; font-size: 13px; font-weight: 400;
+            font-family: 'ProximaNova SemiBold'; font-size: 13px; font-weight: 400;
             color: #696865; text-align: center;
             margin: 0px; padding: 12px 0px 2px 0px;
         }
@@ -224,14 +316,13 @@ article {
 
     article .zonde-icon {
         display: block;
-        padding: 20px 20px 10px 20px;
-        margin: 0px auto;
+        padding: 0px 0px 10px 0px; margin: 0px auto;
     }
 
     div#buttonContainer {
         display: block; position: relative;
         width: 100%; height: auto;
-        top: 25px;
+        padding: 8px 0px 18px 0px;
         text-align: center;
     }
 
@@ -240,12 +331,19 @@ article {
 #videoContainer {
     display: block;
     height: 320px; width: 100%;
+    margin-bottom: 10px;
     background-color: #58575a;
 }
+
+    #videoContainer video {
+        display: block;
+        margin: 0px auto;
+    }
 
 #photoContainer {
     display: block;
     height: 182px; width: 100%;
+    margin-bottom: 10px;
     background-color: #58575a;
 }
 

@@ -123,6 +123,7 @@ define(['jquery', 'underscore', 'backbone', 'fastclick'], function($, _, Backbon
             this.render();
         },
         
+        
         render: function(eventName) {
             var self = this;
             $(this.el).html(this.template);
@@ -139,6 +140,22 @@ define(['jquery', 'underscore', 'backbone', 'fastclick'], function($, _, Backbon
            
            this.render();
            
+       },
+       
+       render: function() {
+           $(this.el).html(this.template);
+       }
+        
+    });
+    
+    directory.views.route = Backbone.View.extend({
+       
+       initialize: function(){
+           _.bindAll(this, 'render');
+           
+           this.template = _.template(directory.utils.templateLoader.get('route-page'));
+           
+           this.render();
        },
        
        render: function() {
@@ -236,6 +253,8 @@ define(['jquery', 'underscore', 'backbone', 'fastclick'], function($, _, Backbon
             }
             
             $('#content').append(page.el);
+            closePopUpMenu();
+            $('#deVideo').get(0).pause();
             
             // deze functie wacht tot de pagina volledig geladen is
             setTimeout(function() {
@@ -249,12 +268,28 @@ define(['jquery', 'underscore', 'backbone', 'fastclick'], function($, _, Backbon
         }
     });
     
-    directory.utils.templateLoader.load(['start-page', 'locatie-page', 'reis-page', 'header'],
+    directory.utils.templateLoader.load(['start-page', 'locatie-page', 'reis-page', 'route-page'],
         function() {
             directory.app = new directory.Router();
             Backbone.history.start();
     });
     
-    FastClick.attach(document.body);
+    $('#menuLink').on('click', openPopUpMenu);
+    $('#content').on('click', closePopUpMenu);
     
+    function openPopUpMenu(){
+        var position = $('#popupMenu').css( "top" );
+        position = parseInt(position);
+        if(position < 0){
+            $('#popupMenu').css( "top", "64px" );
+        }else{
+            $('#popupMenu').css( "top", "" );
+        }
+    };
+    
+    function closePopUpMenu(){
+        $('#popupMenu').css( "top", "" );
+    };
+    
+    FastClick.attach(document.body);
 });
