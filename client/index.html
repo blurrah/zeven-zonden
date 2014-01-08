@@ -6,12 +6,13 @@
 	<meta name="apple-mobile-web-app-capable" content="yes" /> <!-- Web App code -->
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, target-densitydpi=medium" />
-		
+	
 	<link rel="apple-touch-icon-precomposed" href="touch-icon-iphone.png" /> <!-- Web App code -->
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="touch-icon-iphone4.png" /> <!-- Web App code -->
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="touch-icon-ipad.png" /> <!-- Web App code -->
 	
 	<link rel="stylesheet" type="text/css" href="css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="css/fonts.css" />
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
     <title>De 7 Zonden</title>
   </head>
@@ -24,14 +25,15 @@
         </nav>
     </header>
     <ul id="popupMenu">
-        <li id="homeButton">Startpagina</li>
-        <li id="badgeButton">Badges</li>
-        <li id="aboutButton">Over deze app</li>
+        <li class="menuOption" id="homeButton"><a href="#">Startpagina</a></li>
+        <li class="menuOption" id="badgeButton"><a href="#badges">Badges</a></li>
+        <li class="menuOption" id="aboutButton"><a href="#info">Over deze app</a></li>
     </ul>
   
     <div id="content"></div>
     
     <!-- Dit is het enige wat nog geladen moet worden. -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQNs72muY8XhUK_ptpiax2EkCYG7zX1lA&sensor=true"></script>
     <script src="js/lib/require.js" data-main="js/app.js"></script>
   </body>
 </html>

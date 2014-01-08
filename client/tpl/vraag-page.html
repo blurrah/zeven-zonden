@@ -1,0 +1,39 @@
+<!--
+    Vraag pagina
+-->
+<section>
+    <div id="videoContainer">
+        <video id="vraagVideo" width="320" height="320" autoplay controls webkit-playsinline onended="changeVideo()">
+            <source src="media/vid_groottuighuis.m4v" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <script type="text/javascript">
+        var playCount = 1;
+            function changeVideo() {
+                var nextVideo = '';
+                
+                var videoPlayer = document.getElementById('vraagVideo');
+                if(playCount === 2) {
+                    nextVideo = "media/vid_groottuighuis.m4v";
+                    videoPlayer.src = nextVideo;
+                    videoPlayer.pause();
+                    playCount = 1;
+                    console.log("playCount is 2");
+                } else if (playCount === 1) {
+                    nextVideo = "media/vid_zonde.m4v";
+                    videoPlayer.src = nextVideo;
+                    videoPlayer.play();
+                    playCount++;
+                    console.log("playCount is 1");
+                } 
+    };
+        </script>
+    </div>
+    <article>
+        <p class="spaced">Door een groot verschil tussen arm en rijk werden een hoop edelen als vraatzuchtig beschouwd. Wat vind u daarvan?</p>
+        <div id="buttonContainer">
+            <a href="#badges" class="smallButton" id="positiveAnswer">Goed</a>
+            <a href="#badges" class="smallButton" id="negativeAnswer">Slecht</a>
+        </div>
+    </article>
+</section>
